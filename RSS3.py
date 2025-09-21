@@ -27,7 +27,7 @@ from browser_utils import click_button_in_order
 
 # ===== 固定情報（学会サイト） =====
 BASE_URL = "https://www.torii.co.jp/new/"
-GAKKAI = "鳥居薬品"
+GAKKAI = "鳥居薬品(ニュース)"
 
 SELECTOR_TITLE = "ul.newsDataList01 li"
 title_selector = "span.newsTitle"

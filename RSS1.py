@@ -27,7 +27,7 @@ from browser_utils import click_button_in_order
 
 # ===== 固定情報（学会サイト） =====
 BASE_URL = "https://tobishipharm.com/news.html"
-GAKKAI = "東菱薬品"
+GAKKAI = "東菱薬品（ニュース）"
 
 SELECTOR_TITLE = "dl.list dd"
 title_selector = "a"
@@ -44,8 +44,8 @@ date_format = f"%Y{year_unit}%m{month_unit}%d{day_unit}"
 date_regex = rf"(\d{{2,4}}){year_unit}(\d{{1,2}}){month_unit}(\d{{1,2}}){day_unit}"
 
 # ===== ポップアップ順序クリック設定 =====
-POPUP_MODE = 0  # 1: 実行 / 0: スキップ
-POPUP_BUTTONS = [""]  # 正確なボタン表記だけを指定
+POPUP_MODE = 1  # 1: 実行 / 0: スキップ
+POPUP_BUTTONS = ["はい"]  # 正確なボタン表記だけを指定
 WAIT_BETWEEN_POPUPS_MS = 500
 BUTTON_TIMEOUT_MS = 12000
 

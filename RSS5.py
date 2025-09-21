@@ -27,7 +27,7 @@ from browser_utils import click_button_in_order
 
 # ===== 固定情報（学会サイト） =====
 BASE_URL = "https://www.nakakita.co.jp/"
-GAKKAI = "中北薬品"
+GAKKAI = "中北薬品(ニュース)"
 
 SELECTOR_TITLE = "div#whatnew_box tr"
 title_selector = "a"

@@ -27,7 +27,7 @@ from browser_utils import click_button_in_order
 
 # ===== 固定情報（学会サイト） =====
 BASE_URL = "https://www.nichiiko.co.jp/company/press/"
-GAKKAI = "日医工"
+GAKKAI = "日医工(ニュース)"
 
 SELECTOR_TITLE = "table.m-table.table-style01.f16 tr"
 title_selector = "a"

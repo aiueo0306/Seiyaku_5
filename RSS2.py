@@ -27,7 +27,7 @@ from browser_utils import click_button_in_order
 
 # ===== 固定情報（学会サイト） =====
 BASE_URL = "https://www.towayakuhin.co.jp/"
-GAKKAI = "東和薬品"
+GAKKAI = "東和薬品（ニュース）"
 
 SELECTOR_TITLE = "ul.news_list li"
 title_selector = "p.news_txt"

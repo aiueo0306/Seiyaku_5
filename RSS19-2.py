@@ -4,6 +4,7 @@ import subprocess
 import tempfile
 import re
 import time
+import datetime
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
 
 # ===== GitHub 上の共通関数を一時ディレクトリにクローン =====
@@ -25,28 +26,31 @@ from scraper_utils import extract_items
 from browser_utils import click_button_in_order
 
 # ===== 固定情報（学会サイト） =====
-BASE_URL = "https://www.nittomedic.co.jp/information/"
-GAKKAI = "日東メディック(ニュース)"
+url = "https://med.nippon-shinyaku.co.jp/news/2025/"
+current_year = datetime.datetime.now().year
 
-SELECTOR_TITLE = "ul.es-row2 li"
+BASE_URL = re.sub(r"\d{4}", str(current_year), url, count=1)
+GAKKAI = "日本新薬(医療従事者)"
+
+SELECTOR_TITLE = "li.tab01.active div.infoText"
 title_selector = "a"
 title_index = 0
 href_selector = "a"
 href_index = 0
-SELECTOR_DATE = "ul.es-row2 li"  # typo修正済み
-date_selector = "p.meta-date"
+SELECTOR_DATE = "li.tab01.active div.infoText"  # typo修正済み
+date_selector = "span.date"
 date_index = 0
-year_unit = "."
-month_unit = "."
-day_unit = ""
+year_unit = "年"
+month_unit = "月"
+day_unit = "日"
 date_format = f"%Y{year_unit}%m{month_unit}%d{day_unit}"
-date_regex = rf"(\d{{2,4}})\s*{year_unit}\s*(\d{{1,2}})\s*{month_unit}\s*(\d{{1,2}})\s*{day_unit}"
+date_regex = rf"(\d{{2,4}}){year_unit}(\d{{1,2}}){month_unit}(\d{{1,2}}){day_unit}"
 # date_format = f"%Y{year_unit}%m{month_unit}%d{day_unit}"
 # date_regex = rf"(\d{{2,4}}){year_unit}(\d{{1,2}}){month_unit}(\d{{1,2}}){day_unit}"
 
 # ===== ポップアップ順序クリック設定 =====
-POPUP_MODE = 0  # 0: ポップアップ処理しない, 1: 処理する
-POPUP_BUTTONS = [""] if POPUP_MODE else [] 
+POPUP_MODE = 1  # 0: ポップアップ処理しない, 1: 処理する
+POPUP_BUTTONS = ["薬剤師"] if POPUP_MODE else [] 
 WAIT_BETWEEN_POPUPS_MS = 500
 BUTTON_TIMEOUT_MS = 12000
 
@@ -55,7 +59,7 @@ BUTTON_TIMEOUT_MS = 12000
 # ===== Playwright 実行ブロック =====
 with sync_playwright() as p:
     print("▶ ブラウザを起動中...")
-    browser = p.chromium.launch(headless=True)
+    browser = p.chromium.launch(headless=False)
     context = browser.new_context(
         locale="ja-JP",
         viewport={"width": 1366, "height": 900},
@@ -114,6 +118,6 @@ with sync_playwright() as p:
         print("⚠ 抽出できた記事がありません。HTML構造が変わっている可能性があります。")
 
     os.makedirs("rss_output", exist_ok=True)
-    rss_path = "rss_output/Feed9.xml"
+    rss_path = "rss_output/Feed19-2.xml"
     generate_rss(items, rss_path, BASE_URL, GAKKAI)
     browser.close()

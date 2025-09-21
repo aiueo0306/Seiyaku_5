@@ -26,7 +26,7 @@ from browser_utils import click_button_in_order
 
 # ===== 固定情報（学会サイト） =====
 BASE_URL = "https://www.chemiphar.co.jp/ir/release/"
-GAKKAI = "日本ケミファ"
+GAKKAI = "日本ケミファ(ニュース)"
 
 SELECTOR_TITLE = "div.section tr"
 title_selector = "a"

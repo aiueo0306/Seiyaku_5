@@ -26,7 +26,7 @@ from browser_utils import click_button_in_order
 
 # ===== 固定情報（学会サイト） =====
 BASE_URL = "https://www.nihon-generic.co.jp/news/"
-GAKKAI = "日本ジェネリック"
+GAKKAI = "日本ジェネリック（ニュース）"
 
 SELECTOR_TITLE = "div.c_link-archive01 li"
 title_selector = "span.c_link-archive01__txt"
