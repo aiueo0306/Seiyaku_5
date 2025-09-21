@@ -59,7 +59,7 @@ BUTTON_TIMEOUT_MS = 12000
 # ===== Playwright 実行ブロック =====
 with sync_playwright() as p:
     print("▶ ブラウザを起動中...")
-    browser = p.chromium.launch(headless=False)
+    browser = p.chromium.launch(headless=True)
     context = browser.new_context(
         locale="ja-JP",
         viewport={"width": 1366, "height": 900},
